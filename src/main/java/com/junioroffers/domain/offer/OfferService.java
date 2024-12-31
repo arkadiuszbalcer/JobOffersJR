@@ -3,9 +3,10 @@ package com.junioroffers.domain.offer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 @AllArgsConstructor
 class OfferService {
 
@@ -15,11 +16,17 @@ class OfferService {
     List<Offer> fetchAllOffersAndSaveAllIfNotExists() {
         List<Offer> jobOffers = fetchOffers();
         final List<Offer> offers = filterNotExistingOffers(jobOffers);
-        return offerRepository.saveAll(offers);
+        try {
+
+            return offerRepository.saveAll(offers);
+      }catch (OfferDuplicatedException duplicateKeyException){
+            throw new OfferSavingException(duplicateKeyException.getMessage(), jobOffers);
+        }
+
     }
 
     private List<Offer> fetchOffers() {
-        return offerFetcher.fetchOffers()
+        return offerFetcher.fetchOffersToJobOfferResponseDto()
                 .stream()
                 .map(OfferMapper::mapFromJobOfferResponseToOffer)
                 .toList();

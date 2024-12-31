@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Component;
+
 
 @AllArgsConstructor
 public class OfferFacade {

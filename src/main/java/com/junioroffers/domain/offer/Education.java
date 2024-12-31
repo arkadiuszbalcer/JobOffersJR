@@ -19,7 +19,7 @@ public class Education {
       return offerRepository.saveAll(offers);
     }
     private List<Offer> fetchOffers() {
-        return offerFetchable.fetchOffers()
+        return offerFetchable.fetchOffersToJobOfferResponseDto()
                 .stream()
                 .map(OfferMapper::mapFromJobOfferResponseToOffer)
                 .toList();

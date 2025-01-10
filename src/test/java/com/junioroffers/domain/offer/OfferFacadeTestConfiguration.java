@@ -1,5 +1,6 @@
 package com.junioroffers.domain.offer;
-import com.junioroffers.domain.offer.dto.JobOfferResponseDto;
+import com.junioroffers.domain.offer.dto.JobOfferResponse;
+
 import java.util.List;
 
 public class OfferFacadeTestConfiguration {
@@ -10,18 +11,18 @@ public class OfferFacadeTestConfiguration {
     OfferFacadeTestConfiguration() {
         this.inMemoryFetcherTest = new InMemoryFetcherTestImpl(
                 List.of(
-                        new JobOfferResponseDto("id", "id", "asds", "1"),
-                        new JobOfferResponseDto("assd", "id", "asds", "2"),
-                        new JobOfferResponseDto("asddd", "id", "asds", "3"),
-                        new JobOfferResponseDto("asfd", "id", "asds", "4"),
-                        new JobOfferResponseDto("agsd", "id", "asds", "5"),
-                        new JobOfferResponseDto("adfvsd", "id", "asds", "6")
+                        new JobOfferResponse("id", "id", "asds", "1"),
+                        new JobOfferResponse("assd", "id", "asds", "2"),
+                        new JobOfferResponse("asddd", "id", "asds", "3"),
+                        new JobOfferResponse("asfd", "id", "asds", "4"),
+                        new JobOfferResponse("agsd", "id", "asds", "5"),
+                        new JobOfferResponse("adfvsd", "id", "asds", "6")
                 )
         );
         this.offerRepository = new InMemoryOfferRepository();
     }
 
-    OfferFacadeTestConfiguration(List<JobOfferResponseDto> remoteClientOffers) {
+    OfferFacadeTestConfiguration(List<JobOfferResponse> remoteClientOffers) {
         this.inMemoryFetcherTest = new InMemoryFetcherTestImpl(remoteClientOffers);
         this.offerRepository = new InMemoryOfferRepository();
     }

@@ -18,6 +18,6 @@ public class HttpOffersSchedulerTest extends BaseIntegrationTest {
 public void should_run_http_client_offers_fetching_exactly_given_times(){
     await().
             atMost(Duration.ofSeconds(2))
-            .untilAsserted(()-> verify(remoteOfferClient, times(2)).fetchOffersToJobOfferResponseDto());
+            .untilAsserted(()-> verify(remoteOfferClient, times(2)).fetchOffers());
 }
 }

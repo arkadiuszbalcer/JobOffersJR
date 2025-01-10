@@ -1,6 +1,6 @@
 package com.junioroffers.domain.offer;
 
-import com.junioroffers.domain.offer.dto.JobOfferResponseDto;
+import com.junioroffers.domain.offer.dto.JobOfferResponse;
 import com.junioroffers.domain.offer.dto.OfferRequestDto;
 import com.junioroffers.domain.offer.dto.OfferResponseDto;
 import java.util.List;
@@ -31,12 +31,12 @@ public class OfferFacadeTest {
         // given
         OfferFacade offerFacade = new OfferFacadeTestConfiguration(
                 List.of(
-                        new JobOfferResponseDto("id", "id", "asds", "1"),
-                        new JobOfferResponseDto("assd", "id", "asds", "2"),
-                        new JobOfferResponseDto("asddd", "id", "asds", "3"),
-                        new JobOfferResponseDto("asfd", "id", "asds", "4"),
-                        new JobOfferResponseDto("Junior", "Comarch", "1000", "https://someurl.pl/5"),
-                        new JobOfferResponseDto("Mid", "Finanteq", "2000", "https://someother.pl/6")
+                        new JobOfferResponse("id", "id", "asds", "1"),
+                        new JobOfferResponse("assd", "id", "asds", "2"),
+                        new JobOfferResponse("asddd", "id", "asds", "3"),
+                        new JobOfferResponse("asfd", "id", "asds", "4"),
+                        new JobOfferResponse("Junior", "Comarch", "1000", "https://someurl.pl/5"),
+                        new JobOfferResponse("Mid", "Finanteq", "2000", "https://someother.pl/6")
                 )
         ).offerFacadeForTests();
         offerFacade.saveOffer(new OfferRequestDto("id", "asds", "asdasd", "1"));

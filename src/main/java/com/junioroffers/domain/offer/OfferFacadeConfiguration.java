@@ -12,9 +12,6 @@ import org.springframework.context.annotation.Configuration;
     @Configuration
     public class OfferFacadeConfiguration {
 
-      private final OfferFetchable offerFetchable;
-      private final OfferRepository repository;
-
 
         @Bean
         OfferFacade offerFacade(OfferFetchable offerFetchable, OfferRepository repository) {

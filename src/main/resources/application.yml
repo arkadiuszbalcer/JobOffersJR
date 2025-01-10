@@ -1,6 +1,7 @@
 spring:
   data:
     mongodb:
+      auto-index-creation: true
       uri: mongodb://admin:admin@localhost:27017/offers
   mvc:
     pathmatch:
@@ -24,3 +25,8 @@ http:
 scheduling:
   enabled: true
 
+auth:
+  jwt:
+    expirationDays: 30
+    secret: ${JWT_SECRET}
+    issuer: job-offers-backend

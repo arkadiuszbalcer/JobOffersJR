@@ -2,12 +2,10 @@ package com.junioroffers.infrastracture.offer.http;
 
 import com.junioroffers.domain.offer.OfferFetchable;
 import com.junioroffers.domain.offer.dto.JobOfferResponse;
-import com.junioroffers.domain.offer.dto.JobOfferResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -20,13 +18,9 @@ public class OfferHttpClient implements OfferFetchable {
     private final String uri;
     private final int port;
 
-    @Override
-    public List<JobOfferResponse> fetchOffersToJobOfferResponse() {
-        return null;
-    }
 
     @Override
-    public List<JobOfferResponseDto> fetchOffersToJobOfferResponseDto() {
+    public List<JobOfferResponse> fetchOffers() {
         log.info("Started fetching offers using http client");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -34,10 +28,10 @@ public class OfferHttpClient implements OfferFetchable {
         try {
             String urlForService = getUrlForService("/offers");
             final String url = UriComponentsBuilder.fromHttpUrl(urlForService).toUriString();
-            ResponseEntity<List<JobOfferResponseDto>> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
+            ResponseEntity<List<JobOfferResponse>> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
                     new ParameterizedTypeReference<>() {
                     });
-            final List<JobOfferResponseDto> body = response.getBody();
+            final List<JobOfferResponse> body = response.getBody();
             if (body == null) {
                 log.info("Response Body was null returning empty List");
                 return Collections.emptyList();

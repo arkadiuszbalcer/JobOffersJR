@@ -1,4 +1,4 @@
-package com.junioroffers.infrastracture.apivalidation;
+package com.junioroffers.infrastructure.apivalidation;
 
 import org.springframework.http.HttpStatus;
 

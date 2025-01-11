@@ -1,4 +1,4 @@
-package com.junioroffers.infrastracture.offer.controller.error;
+package com.junioroffers.infrastructure.offer.controller.error;
 
 import com.junioroffers.domain.offer.OfferDuplicatedException;
 import com.junioroffers.domain.offer.OfferNotFoundException;

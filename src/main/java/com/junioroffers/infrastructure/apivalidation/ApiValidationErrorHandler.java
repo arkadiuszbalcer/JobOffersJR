@@ -1,4 +1,4 @@
-package com.junioroffers.infrastracture.apivalidation;
+package com.junioroffers.infrastructure.apivalidation;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -2,7 +2,7 @@ package com.junioroffers.apivalidationerror;
 
 import com.junioroffers.BaseIntegrationTest;
 
-import com.junioroffers.infrastracture.apivalidation.ApiValidationErrorDto;
+import com.junioroffers.infrastructure.apivalidation.ApiValidationErrorDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;

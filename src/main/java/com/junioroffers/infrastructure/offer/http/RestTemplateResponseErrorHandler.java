@@ -1,4 +1,4 @@
-package com.junioroffers.infrastracture.offer.http;
+package com.junioroffers.infrastructure.offer.http;
 
 import java.io.IOException;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.server.ResponseStatusException;
 import static org.springframework.http.HttpStatus.Series.CLIENT_ERROR;
 import static org.springframework.http.HttpStatus.Series.SERVER_ERROR;
-public class RestTemplateErrorHandler  extends DefaultResponseErrorHandler {
+public class RestTemplateResponseErrorHandler extends DefaultResponseErrorHandler {
 
 
     @Override

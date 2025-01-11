@@ -1,4 +1,4 @@
-package com.junioroffers.infrastracture.offer.scheduler;
+package com.junioroffers.infrastructure.offer.scheduler;
 
 import com.junioroffers.domain.offer.OfferFacade;
 import com.junioroffers.domain.offer.dto.OfferResponseDto;

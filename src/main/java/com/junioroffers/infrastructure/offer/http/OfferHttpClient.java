@@ -1,4 +1,4 @@
-package com.junioroffers.infrastracture.offer.http;
+package com.junioroffers.infrastructure.offer.http;
 
 import com.junioroffers.domain.offer.OfferFetchable;
 import com.junioroffers.domain.offer.dto.JobOfferResponse;
@@ -8,8 +8,9 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
-import java.util.Collections;
+
 import java.util.List;
 @AllArgsConstructor
 @Log4j2
@@ -33,15 +34,15 @@ public class OfferHttpClient implements OfferFetchable {
                     });
             final List<JobOfferResponse> body = response.getBody();
             if (body == null) {
-                log.info("Response Body was null returning empty List");
-                return Collections.emptyList();
+                log.error("Response Body was null");
+                throw new ResponseStatusException(HttpStatus.NO_CONTENT);
             }
             log.info("Success Response Body Returned  " + body);
             return body;
         } catch (ResourceAccessException e) {
-            log.error("Error while fetching offers using http client" + e.getMessage());
+            log.error("Error while fetching offers using http client:" + e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return null;
     }
 
     private String getUrlForService(String service) {

@@ -1,28 +1,25 @@
 package com.junioroffers.domain.loginandregister;
 
-import com.junioroffers.domain.loginandregister.dto.RegistrationUserDto;
+import com.junioroffers.domain.loginandregister.dto.RegisterUserDto;
 import com.junioroffers.domain.loginandregister.dto.RegistrationResultDto;
 import com.junioroffers.domain.loginandregister.dto.UserDto;
 import org.assertj.core.api.AssertionsForClassTypes;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.authentication.BadCredentialsException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.ThrowableAssert.catchThrowable;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import static org.junit.jupiter.api.Assertions.*;
-
- class LoginAndRegisterFacadeTest {
+class LoginAndRegisterFacadeTest {
      LoginAndRegisterFacade loginAndRegisterFacade = new LoginAndRegisterFacade(new InMemoryLoginRepositoryTest());
 
 
      @Test
      public void should_register_user() {
          //given
-         RegistrationUserDto registrationUserDto = new RegistrationUserDto(
+         RegisterUserDto registrationUserDto = new RegisterUserDto(
                  "username",
-                 "usersurname",
-                 "@email",
                  "password"
          );
          //when
@@ -30,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
          //then
          assertAll(
-                 () -> assertThat(registrationResultDto.registered()).isTrue(),
+                 () -> assertThat(registrationResultDto.created()).isTrue(),
                  () -> assertThat(registrationResultDto.username()).isEqualTo("username")
          );
      }
@@ -38,10 +35,8 @@ import static org.junit.jupiter.api.Assertions.*;
      @Test
      public void should_find_user_by_user_name() {
          //given
-         RegistrationUserDto registrationUserDto = new RegistrationUserDto(
+         RegisterUserDto registrationUserDto = new RegisterUserDto(
                  "username",
-                 "usersurname",
-                 "@email",
                  "password"
          );
          RegistrationResultDto registrationResultDto = loginAndRegisterFacade.register(registrationUserDto);
@@ -49,8 +44,6 @@ import static org.junit.jupiter.api.Assertions.*;
          UserDto userDto = loginAndRegisterFacade.findByUsername(registrationResultDto.username());
          //Then
          assertThat(userDto).isEqualTo(new UserDto(registrationResultDto.id(), "username",
-                 "usersurname",
-                 "@email",
                  "password"));
      }
 
@@ -62,7 +55,7 @@ import static org.junit.jupiter.api.Assertions.*;
          Throwable thrown = catchThrowable(()-> loginAndRegisterFacade.findByUsername(username));
          //then
          AssertionsForClassTypes.assertThat(thrown)
-                 .isInstanceOf(UsernameNotFoundException.class)
+                 .isInstanceOf(BadCredentialsException.class)
                  .hasMessage("User not found");
 
      }

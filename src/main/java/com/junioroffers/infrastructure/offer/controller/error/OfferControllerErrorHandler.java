@@ -20,7 +20,7 @@ OfferControllerErrorHandler {
     @ExceptionHandler(OfferNotFoundException.class)
     @ResponseBody
     public OfferErrorResponse offerNotFound(OfferNotFoundException exception){
-        final String message = String.format("Offer with id % not found", exception.getMessage());
+        final String message = exception.getMessage();
         log.error(message);
         return new OfferErrorResponse(message, HttpStatus.NOT_FOUND);
     }
@@ -29,7 +29,7 @@ OfferControllerErrorHandler {
     @ExceptionHandler(DuplicateKeyException.class)
     @ResponseBody
     public OfferPostErrorResponse offerNotFound(OfferDuplicatedException exception){
-        final String message = String.format("Offer with url % already exists", exception.getOfferUrls());
+        final String message = String.format("Offer with url %s already exists", exception.getOfferUrls());
         log.warn(message);
         return new OfferPostErrorResponse(Collections.singletonList(message), HttpStatus.CONFLICT);
     }
